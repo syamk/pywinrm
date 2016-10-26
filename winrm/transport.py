@@ -157,7 +157,7 @@ class Transport(object):
         elif self.auth_method == 'credssp':
             if not HAVE_CREDSSP:
                 raise WinRMError("requests auth method is credssp, but requests-credssp is not installed")
-            session.auth = HttpCredSSPAuth(username=self.username, password=self.password)
+            session.auth = HttpCredSSPAuth(username=self.username, password=self.password, disable_tlsv1_2=True)
 
         else:
             raise WinRMError("unsupported auth method: %s" % self.auth_method)
